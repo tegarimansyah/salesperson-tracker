@@ -1,0 +1,16 @@
+{
+  "name": "package_name",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "build-outerbase": "vite build && sh ../../scripts/outerbase_compatible.sh ../../dist/package_name.js",
+    "build-minify-outerbase": "vite build && set -e; run(){ pnpx terser -c drop_console=true  -m toplevel=true -m reserved=['userCode'] --module ../../dist/package_name.js > ../../dist/package_name.min.js; }; run && sh ../../scripts/outerbase_compatible.sh ../../dist/package_name.min.js"
+  },
+  "devDependencies": {
+    "path": "^0.12.7",
+    "terser": "^5.20.0",
+    "vite": "^4.4.5"
+  }
+}
